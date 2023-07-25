@@ -28,4 +28,10 @@ describe('User entity unit tests', () => {
     expect(sut.props.password).toEqual(props.password)
     expect(sut.props.createdAt).toBeInstanceOf(Date)
   })
+
+  it('should class getter return correct name', () => {
+    const { sut, props } = makeSut()
+
+    expect(sut.name).toEqual(props.name)
+  })
 })
