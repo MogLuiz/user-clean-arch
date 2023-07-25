@@ -1,20 +1,31 @@
 import { faker } from '@faker-js/faker'
 
-import { UserEntity } from './user.entity'
+import { UserEntity, UserProps } from './user.entity'
 
-const entityProps = {
-  name: faker.person.fullName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
+type MakeSut = {
+  sut: UserEntity
+  props: UserProps
+}
+
+const makeSut = (): MakeSut => {
+  const props = {
+    name: faker.person.fullName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+  }
+
+  const sut = new UserEntity(props)
+
+  return { sut, props }
 }
 
 describe('User entity unit tests', () => {
   it('should initialize constructor with correct props', () => {
-    const { props } = new UserEntity(entityProps)
+    const { sut, props } = makeSut()
 
-    expect(props.name).toEqual(props.name)
-    expect(props.email).toEqual(props.email)
-    expect(props.password).toEqual(props.password)
-    expect(props.createdAt).toBeInstanceOf(Date)
+    expect(sut.props.name).toEqual(props.name)
+    expect(sut.props.email).toEqual(props.email)
+    expect(sut.props.password).toEqual(props.password)
+    expect(sut.props.createdAt).toBeInstanceOf(Date)
   })
 })
