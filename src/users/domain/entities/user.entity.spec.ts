@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 
 import { UserEntity, UserProps } from './user.entity'
+import { userDataBuilder } from '../testing/helpers/user-data-builder'
 
 type MakeSut = {
   sut: UserEntity
@@ -8,11 +9,7 @@ type MakeSut = {
 }
 
 const makeSut = (): MakeSut => {
-  const props = {
-    name: faker.person.fullName(),
-    email: faker.internet.email(),
-    password: faker.internet.password(),
-  }
+  const props = userDataBuilder({})
 
   const sut = new UserEntity(props)
 
