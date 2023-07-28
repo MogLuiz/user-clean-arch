@@ -9,13 +9,20 @@ type StubProps = {
 
 class StubEntity extends Entity<StubProps> {}
 
+const props = {
+  prop1: 'prop1',
+  prop2: 2,
+}
+
+const makeSut = (): StubEntity => {
+  const sut = new StubEntity(props)
+
+  return sut
+}
+
 describe('Entity unit tests', () => {
-  const props = {
-    prop1: 'prop1',
-    prop2: 2,
-  }
   it('should initialize constructor with correct props', () => {
-    const sut = new StubEntity(props)
+    const sut = makeSut()
 
     expect(sut.id).toBeDefined()
     expect(sut.props.prop1).toEqual(props.prop1)
@@ -37,7 +44,7 @@ describe('Entity unit tests', () => {
   })
 
   it('should convert entity to json', () => {
-    const sut = new StubEntity(props)
+    const sut = makeSut()
 
     expect(sut.toJSON()).toEqual({
       id: sut.id,
