@@ -55,4 +55,13 @@ describe('User entity unit tests', () => {
 
     expect(sut.name).toEqual(newName)
   })
+
+  it('should updatePassword method update password property', () => {
+    const newPass = faker.internet.password()
+    const { sut } = makeSut()
+
+    sut.updatePassword(newPass)
+
+    expect(sut.password).toEqual(newPass)
+  })
 })
