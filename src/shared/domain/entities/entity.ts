@@ -1,3 +1,5 @@
+import { InvalidUUIDError } from '@/shared/errors'
+import { isValidUUID } from '@/users/domain/testing/helpers/is-valid-uuuid'
 import crypto from 'node:crypto'
 
 export abstract class Entity<T> {
@@ -7,6 +9,11 @@ export abstract class Entity<T> {
   constructor(props: T, id?: string) {
     this._id = id ?? crypto.randomUUID()
     this.props = props
+    this.validate()
+  }
+
+  validate(): void {
+    if (!isValidUUID(this.id)) throw new InvalidUUIDError()
   }
 
   get id(): string {
