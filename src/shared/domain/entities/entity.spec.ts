@@ -35,4 +35,14 @@ describe('Entity unit tests', () => {
       InvalidUUIDError,
     )
   })
+
+  it('should convert entity to json', () => {
+    const sut = new StubEntity(props)
+
+    expect(sut.toJSON()).toEqual({
+      id: sut.id,
+      prop1: props.prop1,
+      prop2: props.prop2,
+    })
+  })
 })
