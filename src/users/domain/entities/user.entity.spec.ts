@@ -34,4 +34,16 @@ describe('User entity unit tests', () => {
     expect(sut.password).toEqual(props.password)
     expect(sut.createdAt).toBeInstanceOf(Date)
   })
+
+  it('should class setters set correct values', () => {
+    const newName = faker.person.firstName()
+    const newPass = faker.internet.password()
+    const { sut } = makeSut()
+
+    sut['name'] = newName
+    sut['password'] = newPass
+
+    expect(sut.name).toEqual(newName)
+    expect(sut.password).toEqual(newPass)
+  })
 })
