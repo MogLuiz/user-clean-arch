@@ -1,5 +1,6 @@
 import { isValidUUID } from '@/users/domain/testing/helpers/is-valid-uuuid'
 import { Entity } from './entity'
+import { InvalidUUIDError } from '@/shared/errors'
 
 type StubProps = {
   prop1: string
@@ -27,5 +28,11 @@ describe('Entity unit tests', () => {
 
     expect(isValidUUID(validUUID)).toBeTruthy()
     expect(sut.id).toEqual(validUUID)
+  })
+
+  it('should throws invalid uuid error', () => {
+    expect(() => new StubEntity(props, 'invalid-uuid')).toThrowError(
+      InvalidUUIDError,
+    )
   })
 })
