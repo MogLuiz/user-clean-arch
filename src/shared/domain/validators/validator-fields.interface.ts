@@ -2,8 +2,8 @@ export type FieldsErrors = {
   [field: string]: string[]
 }
 
-export interface ValidatorFieldsInterface<T, U> {
+export interface ValidatorFieldsInterface<T> {
   errors: FieldsErrors
   validatedData: T
-  validate(data: U): boolean
+  validate(data: any): boolean
 }
