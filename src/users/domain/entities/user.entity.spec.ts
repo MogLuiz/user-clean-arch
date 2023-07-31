@@ -10,7 +10,6 @@ type MakeSut = {
 
 const makeSut = (): MakeSut => {
   const props = userDataBuilder({})
-
   const sut = new UserEntity(props)
 
   return { sut, props }
